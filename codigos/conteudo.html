@@ -13,38 +13,39 @@
 </head>
 
 <body>
-  <main>
-    <header class="container header">
-      <div class="row">
-        <div class="col-12 header_area">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-4 col-lg-2">
-              <img title="logo_imagem" src="img/logo.png" class="logo">
-            </div>
 
-            <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
-              <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link" href="index.html">Home</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="login.html">Login</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="cadastro.html">Cadastro</a>
-                <a class="flex-sm-fill text-sm-center nav-link active" href="conteudo.html">Conteúdo</a>
-              </nav>
-            </div>
-
+  <header class="container header">
+    <div class="row">
+      <div class="col-12 header_area">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+            <img title="logo_imagem" src="img/logo.png" class="logo">
           </div>
+
+          <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
+            <nav class="nav nav-pills flex-column flex-sm-row">
+              <a class="flex-sm-fill text-sm-center nav-link active" href="index.html">Home</a>
+              <a class="flex-sm-fill text-sm-center nav-link" href="login.html">Login</a>
+              <a class="flex-sm-fill text-sm-center nav-link" href="cadastro.html">Cadastre-se</a>
+
+              <div id="botao_logout"> </div>
+
+            </nav>
+          </div>
+
         </div>
-    </header>
+
+      </div>
+  </header>
+
+  <main>
 
     <section class="py-5 text-center container">
       <div class="row py-lg-5" id="titulo">
         <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Conteúdo disponível para acidentes com idosos</h1>
-          <p class="lead text-muted">De acordo com o Ministério da Saúde, 75% dos acidentes com idosos acontecem dentro
-            das próprias casas.</p>
-          <p>
-            <a href="cadastro.html" class="btn btn-primary   my-2">Fazer Cadastro</a>
-            <a href="login.html" class="btn btn-secondary my-2">Fazer Login </a>
-            <div id="botao_logout"> </div>
+          <h1>Conteúdo disponível para acidentes com idosos</h1>
+          <p class="lead text-muted">
+            De acordo com o Ministério da Saúde, 75% dos acidentes com idosos acontecem dentrodas próprias casas.
           </p>
         </div>
       </div>
@@ -57,9 +58,9 @@
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="infoInicial"></div>
+        <div class="btn-group" id="botao_cadastro"></div>
       </div>
-      <div class="btn-group" id="botao_cadastro">
-      </div>
+      
     </div>
 
     </div>
@@ -67,12 +68,10 @@
 
   </main>
 
-  <footer>
-    <div class=" row">
-      <div class="col-12 footer_area">
-        Portal Primeiros Socorros - Todos os direitos reservados - 2022
-      </div>
-    </div>
+  <footer id="footer">
+
+    <p>Portal Primeiros Socorros - Todos os direitos reservados - 2022</p>
+
   </footer>
 
   <script>
@@ -126,7 +125,7 @@
       }
     }
     document.getElementById('infoInicial').innerHTML = texto;
-    
+
     // Adiciona botao para cadastrar apenas para medicos
     let botaoCadastro = "";
     if (usuarioCorrente.tipo == 2) {
@@ -143,10 +142,10 @@
 
     // Adiciona botão logout apenas se usuarios estiver logado
     let botaoLogout = "";
-    if (usuarioCorrente.id != undefined ) {
+    if (usuarioCorrente.id != undefined) {
       botaoLogout += ` <div class="botao_logout" > <a href="javascript:logoutUser()" class="btn btn-danger my-2">Logout </a> </div>`
     }
-    document.getElementById('botao_logout').innerHTML = botaoLogout;    
+    document.getElementById('botao_logout').innerHTML = botaoLogout;
 
   </script>
 
