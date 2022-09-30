@@ -1,6 +1,6 @@
 # Primeiros-Socorros-Catuana
 
-O Mentor tem o intúito de auxiliar os usuários a estuarem para o seu vestibular. O site ajuda os usuários com dicas relacionadas ao estudo, para que eles possam ter uma melhor eficiência e entendimento. Além disso, a aplicação permite o usuário preparar uma rotina de estudo por meio de um *To-Do list* e disponibiliza gráficos com conteúdos recorrentes em sua prova.
+O desconhecimento sobre primeiros socorros é inegável na sociedade, pois, embora extremamente necessário, é um tema pouquíssimo discutido e divulgado. Entretanto, o maior conhecimento nessa área, além de ser um recurso útil no dia a dia de cada uma das pessoas, em especial daquelas que venham a presenciar algum acidente, favorece o trabalho de médicos e de enfermeiros em caso de urgência, possibilitando, assim, o cuidado de mais vítimas com êxito.
 
 ## Alunos integrantes da equipe
 
