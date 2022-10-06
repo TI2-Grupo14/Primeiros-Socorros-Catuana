@@ -1,3 +1,12 @@
+:root{
+  --main-color:(#ffffff);
+  --secundary-color:(#40bba4);
+  --terciary-color:(#363e43);
+  --hyligth-color-1:(#eb7062);
+  --hyligth-color-2:(#f1c41f);
+  --hyligth-color-3:(#efaf6a);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -9,7 +18,7 @@
   body {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(#000000, #9f8888);
+    background: #363e43;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -24,16 +33,16 @@
     width: 900px;
     max-width: 100%;
     overflow: hidden;
-    background: rgba( 0, 0, 0, 0.65 );
+    background: white;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     backdrop-filter:blur( 35px );
     -webkit-backdrop-filter: blur( 45px );
     border-radius: 10px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    border: 1px solid #363e43;
   }
   
   .header {
-    background-color: #b12025;
+    background-color: #eb7062;
     padding: 20px;
   }
 
@@ -51,7 +60,7 @@
   }
 
   p{
-      color:#b12025 ;
+      color: black;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
   
@@ -64,7 +73,7 @@
   .form-control label {
     display: inline-block;
     margin-bottom: 5px;
-    color: #b12025;
+    color: black;
   }
   
   .form-control input {
@@ -91,8 +100,8 @@
   }
   
   .form button {
-    background-color: #b12025;
-    border: 2px solid #b12025;
+    background-color: #eb7062;
+    border: 2px solid #eb7062;
     color: #fff;
     font-size: 14px;
     width: 100%;
@@ -102,35 +111,33 @@
   
   
   .form-control.success input {
-    border-color: #2ecc71;
+    border-color: green;
   }
   
   .form-control.error input {
-    border-color: #e74c3c;
+    border-color: red;
   }
   
   .form-control.success i.fa-check-circle {
-    color: #2ecc71;
+    color: green;
     visibility: visible;
   }
   
   .form-control.error i.fa-exclamation-circle {
-    color: #e74c3c;
+    color: red;
     visibility: visible;
   }
   
   .form-control.error small {
     visibility: visible;
-    color: #e74c3c;
+    color: red;
   }
 
   label{
-      color: #b12025;
+      color: black;
       padding: 10px;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   }
-
-  
 
   .button span {
     position: relative;
