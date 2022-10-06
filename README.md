@@ -16,3 +16,4 @@ O desconhecimento sobre primeiros socorros é inegável na sociedade, pois, embo
 * Vinícius Von Glehn de Ilippo
 
 ## Instruções de utilização
+# Ainda não disponível para uso
