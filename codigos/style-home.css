@@ -44,40 +44,21 @@ html{
     padding: 20px;
 }
 
-/* CARDS */
-.cards{
-    padding: 10px;
-    margin-top: 60px;
+/* CARDS - CARROUSEL */
+
+.btn-primary{
+    background-color: #efaf6a;
+    border-color: #efaf6a;
 }
 
-#card1{
-    padding: 10px;
-    margin-left: 10px;
+.btn-primary:hover {
+    background-color: #eb7062;
+    border-color: #eb7062;
 }
 
-#img_engasgo{
-    width:"100px";
-}
-#img_queimadura{
-    width:"100%";
-}
-#btn-plano2 #btn-plano{
-    align-items: center;
-    align-content: center;
-}
-
-#card2{
-    padding: 10px;
-    margin-left: 10px;
-}
-
-/* PLANOS */
-
-.planos{
-    padding: 10px;
-    margin-top: 60px;
-    width: 90%;
-    margin-bottom: 30px;
+.btn-primary:focus{
+    background-color: #eb7062;
+    border-color: #eb7062;
 }
 
 /* NOTICIAS */
@@ -88,6 +69,23 @@ html{
 .noticias h1{
     text-align: center;
     padding: 10px;
+}
+
+/* RECENTES - CARROUSEL */
+
+.carousel-videos{
+    margin-bottom: 25px;
+}
+
+.top-content .carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+
+.top-content .carousel-indicators {
+    bottom: -40px;
 }
 
 /* FOOTER */
@@ -124,4 +122,22 @@ html{
         text-align: center;
     }
     
+}
+
+@media (max-width: 767px) {
+ 
+    /* ... */
+ 
+    .top-content .carousel-control-prev, 
+    .top-content .carousel-control-next {
+        display: none;
+    }
+ 
+    .top-content .carousel-indicators li {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+ 
+    /* ... */
+ 
 }

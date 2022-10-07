@@ -29,11 +29,6 @@
     color: #eb7062;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-    color: #fff;
-    background-color: #eb7062;
-}
-
 .my-2 {
     margin-top: 0 !important;
     margin-bottom: 0 !important;

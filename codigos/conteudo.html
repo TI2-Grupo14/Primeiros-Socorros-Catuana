@@ -24,7 +24,7 @@
 
           <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
             <nav class="nav nav-pills flex-column flex-sm-row">
-              <a class="flex-sm-fill text-sm-center nav-link active" href="index.html">Home</a>
+              <a class="flex-sm-fill text-sm-center nav-link" href="index.html">Home</a>
               <a class="flex-sm-fill text-sm-center nav-link" href="login.html">Login</a>
               <a class="flex-sm-fill text-sm-center nav-link" href="cadastro.html">Cadastre-se</a>
 
@@ -53,14 +53,27 @@
 
     <div class="album py-5 bg-light">
       <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+        <div class="row">
+          <select id="tipo de acidente">
+            <option value="" selected>-- Selecione um tipo de acidente --</option>
+            <option value="">Queimadura</option>
+            <option value="">Corte</option>
+            <option value="">Concussão</option>
+            <option value="">Asfixia</option>
+            <option value="">Fratura</option>
+          </select>
+        </div>
+
+        <div class="row">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          </div>
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="infoInicial"></div>
         <div class="btn-group" id="botao_cadastro"></div>
       </div>
-      
+
     </div>
 
     </div>
