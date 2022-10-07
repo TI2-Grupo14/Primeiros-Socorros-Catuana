@@ -13,7 +13,7 @@ O desconhecimento sobre primeiros socorros é inegável na sociedade, pois, embo
 ## Professores responsáveis
 
 * Ilo Amy Saldanha Rivero
-* Vinícius Von Glehn de Ilippo
+* Vinicius Von Glehn de Filippo
 
 ## Instruções de utilização
-# Ainda não disponível para uso
+
