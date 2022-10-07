@@ -7,11 +7,11 @@
 
 /* CREATE SCHEMA */
 
--- 
+CREATE SCHEMA CATUANA;
 
 /* CREATE TABLES */
 
-CREATE TABLE USUARIO(
+CREATE TABLE CATUANA.USUARIO(
     nome VARCHAR (80) NOT NULL,
     cpf CHAR (11) NOT NULL,
     email VARCHAR (80) NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE USUARIO(
     medico BOOLEAN
 );
 
-CREATE TABLE POSTAGEM(
+CREATE TABLE CATUANA.POSTAGEM(
     id SERIAL NOT NULL,
     medico CHAR(11) NOT NULL,
     acidente SMALLINT NOT NULL,
@@ -30,20 +30,21 @@ CREATE TABLE POSTAGEM(
     descricao VARCHAR (1000) NOT NULL
 );
 
-CREATE TABLE ACIDENTE(
+CREATE TABLE CATUANA.ACIDENTE(
     codigo SMALLINT NOT NULL,
     nome VARCHAR (20) NOT NULL,
     descricao VARCHAR (1000) NOT NULL
 );
 
-CREATE TABLE NOTICIA(
+CREATE TABLE CATUANA.NOTICIA(
     id SERIAL NOT NULL,
     titulo VARCHAR (200) NOT NULL,
     data CHAR (10),
     jornal VARCHAR (200) NOT NULL,
     corpo VARCHAR (3000) NOT NULL,
     link VARCHAR (200) NOT NULL,
-    usuario CHAR (11) NOT NULL
+    usuario CHAR (11) NOT NULL,
+    aprovacao BOOLEAN
 );
 
 /* ADD CONSTRAINTS */
@@ -208,15 +209,15 @@ INSERT INTO POSTAGEM (medico, acidente, site, videoaula, descricao)
 
 /* INSERT NOTICIA */
 
-INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario)
-   VALUES ('Samu orienta 115 moradores de morros em Santos sobre primeiros socorros', '12/05/2022','Prefeitura de Santos','O intuito foi capacitar e aproximar os moradores, principalmente de áreas de difícil acesso para as ambulâncias. Eles foram orientados sobre como agir nos principais casos de emergência de saúde e receberam orientações a respeito do funcionamento dos serviços do Samu.','https://www.santos.sp.gov.br/?q=noticia/samu-orienta-115-moradores-de-morros-em-santos-sobre-primeiros-socorros', '98398660071');
+INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario, aprovacao)
+   VALUES ('Samu orienta 115 moradores de morros em Santos sobre primeiros socorros', '12/05/2022','Prefeitura de Santos','O intuito foi capacitar e aproximar os moradores, principalmente de áreas de difícil acesso para as ambulâncias. Eles foram orientados sobre como agir nos principais casos de emergência de saúde e receberam orientações a respeito do funcionamento dos serviços do Samu.','https://www.santos.sp.gov.br/?q=noticia/samu-orienta-115-moradores-de-morros-em-santos-sobre-primeiros-socorros', '98398660071', true);
 
-INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario)
-   VALUES ('Confira 12 itens de primeiros socorros que você deve ter em casa', '16/05/2022', 'Jornal Metrópoles', 'Alguns produtos não costumam estar nos kits que as pessoas têm em casa, mas valem o investimento. Um abaixador de língua, por exemplo, pode ajudar a ver algum objeto na garganta e até a imobilizar um dedo da mão. Outra boa aquisição é uma bolsa térmica, que pode ser usada tanto fria quanto quente e serve para cólicas ou mesmo hematomas ou inchaços por pancadas.', 'https://www.metropoles.com/saude/confira-12-itens-de-primeiros-socorros-que-voce-deve-ter-em-casa','97621289541');
+INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario, aprovacao)
+   VALUES ('Confira 12 itens de primeiros socorros que você deve ter em casa', '16/05/2022', 'Jornal Metrópoles', 'Alguns produtos não costumam estar nos kits que as pessoas têm em casa, mas valem o investimento. Um abaixador de língua, por exemplo, pode ajudar a ver algum objeto na garganta e até a imobilizar um dedo da mão. Outra boa aquisição é uma bolsa térmica, que pode ser usada tanto fria quanto quente e serve para cólicas ou mesmo hematomas ou inchaços por pancadas.', 'https://www.metropoles.com/saude/confira-12-itens-de-primeiros-socorros-que-voce-deve-ter-em-casa','97621289541', true);
 
-INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario)
-   VALUES ('iFood e Prefeitura realizam capacitação em primeiros socorros para entregadores de Salvador', '27/05/2022', 'Jornal Correio', 'A capacitação ocorreu no Salvador Shopping, no Instituto JCPM de Compromisso Social (Espaço IJCPM), como parte das ações de conscientização que marcam o Maio Amarelo.', 'https://www.correio24horas.com.br/noticia/nid/ifood-e-prefeitura-realizam-capacitacao-em-primeiros-socorros-para-entregadores-de-salvador/','69937751071');
+INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario, aprovacao)
+   VALUES ('iFood e Prefeitura realizam capacitação em primeiros socorros para entregadores de Salvador', '27/05/2022', 'Jornal Correio', 'A capacitação ocorreu no Salvador Shopping, no Instituto JCPM de Compromisso Social (Espaço IJCPM), como parte das ações de conscientização que marcam o Maio Amarelo.', 'https://www.correio24horas.com.br/noticia/nid/ifood-e-prefeitura-realizam-capacitacao-em-primeiros-socorros-para-entregadores-de-salvador/','69937751071', true);
 
-INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario)
-   VALUES ('Criança de um ano e meio se engasga com maçã e é salva por policial em Maracanaú', '05/06/2022', 'Jornal O Povo', 'Criança voltou a respirar após PM aplicar a manobra de Heimlich, técnica de primeiros socorros recomendada em casos de obstrução das vias respiratórias.', 'https://www.opovo.com.br/noticias/ceara/maracanau/2022/06/05/crianca-de-um-ano-e-meio-se-engasga-com-maca-e-e-salva-por-policial-em-maracanau.html','11590442016');
+INSERT INTO NOTICIA (titulo, data, jornal, corpo, link, usuario, aprovacao)
+   VALUES ('Criança de um ano e meio se engasga com maçã e é salva por policial em Maracanaú', '05/06/2022', 'Jornal O Povo', 'Criança voltou a respirar após PM aplicar a manobra de Heimlich, técnica de primeiros socorros recomendada em casos de obstrução das vias respiratórias.', 'https://www.opovo.com.br/noticias/ceara/maracanau/2022/06/05/crianca-de-um-ano-e-meio-se-engasga-com-maca-e-e-salva-por-policial-em-maracanau.html','11590442016', true);
 
