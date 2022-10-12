@@ -19,4 +19,4 @@ O desconhecimento sobre primeiros socorros é inegável na sociedade, pois, embo
 
 Para utilizar o site, acesse o link a seguir:
 
-https://ti2-grupo14.github.io/Primeiros-Socorros-Catuana/
+
