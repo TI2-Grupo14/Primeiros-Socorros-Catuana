@@ -15,15 +15,16 @@ CREATE TABLE USUARIO(
     nome VARCHAR (80) NOT NULL,
     cpf CHAR (11) NOT NULL,
     email VARCHAR (80) NOT NULL,
-    celular CHAR(11),
-    senha VARCHAR(50) NOT NULL,
+    celular CHAR (11),
+    senha VARCHAR (50) NOT NULL,
     adm BOOLEAN,
-    medico BOOLEAN
+    medico BOOLEAN,
+    crm VARCHAR (10)
 );
 
 CREATE TABLE POSTAGEM(
     id SERIAL NOT NULL,
-    medico CHAR(11) NOT NULL,
+    medico CHAR (11) NOT NULL,
     acidente SMALLINT NOT NULL,
     site VARCHAR (200) NOT NULL,
     videoaula VARCHAR (200) NOT NULL,
@@ -81,7 +82,7 @@ ALTER TABLE NOTICIA
 
 ALTER TABLE USUARIO
    ADD CONSTRAINT RESTRICOES_USUARIO
-   UNIQUE (email, celular);
+   UNIQUE (email, celular, crm);
 
 ALTER TABLE ACIDENTE
    ADD CONSTRAINT RESTRICOES_ACIDENTE
