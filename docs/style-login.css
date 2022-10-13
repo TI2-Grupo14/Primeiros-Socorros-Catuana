@@ -33,7 +33,7 @@
     padding: 20px !important;
 }
 
- body {
+body {
     margin: 0;
     padding: 0;
     
@@ -125,6 +125,10 @@
     background: #eb7062;
     color: #fff;
     border-radius: 5px;
+}
+
+#login-button{
+    cursor: pointer;
 }
 
 .login-box a span {

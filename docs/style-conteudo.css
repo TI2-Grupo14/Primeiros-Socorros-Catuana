@@ -49,8 +49,36 @@
 
 /* MAIN */
 
+#retorno{
+    margin-left: 10%;
+    background-color: #363e43;
+    color: #eb7062;
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+#retorno:hover{
+    cursor: pointer;
+    background-color: #eb7062;
+    color: #363e43;
+}
+
 h1{
     color: #f1c41f;
+}
+
+.btn-outline-secondary{
+    background-color: #363e43;
+    border-color: #363636;
+    color: #eb7062;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #eb7062;
+    color: #363e43;
+    border-color: #eb7062;
+
 }
 
 #cadastro_info {
