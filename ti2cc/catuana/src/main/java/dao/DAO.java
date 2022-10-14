@@ -1,61 +1,61 @@
 package dao;
 
+import static spark.Spark.*;
 import java.sql.*;
 
 public class DAO {
 	protected Connection conexao;
+	protected boolean flagConnectionIsConnected;
 	
 	/**
 	 * Construtor padrao da classe DAO.
 	 */
 	public DAO() {
 		conexao = null;
+		flagConnectionIsConnected = false;
+	}
+	
+	/**
+	 * Metodo getter para obter a conecao atual.
+	 * @return conexao.
+	 */
+	public Connection getConnection(){
+	    return this.connection;
+	}
+
+	/**
+	 * Metodo settar a conecao atual.
+	 */
+	public void setConnection(Connection connection) {
+	    this.connection = connection;
 	}
 	
 	/**
 	 * Metodo para conectar a aplicacao com o banco de dados hospedado no
 	 * servidor.	
-	 * @return status - true, se a conexao foi bem sucessidade; false, caso
-	 * contrario.
 	 */
-	public boolean conectar() {
-		String driverName = "org.postgresql.Driver";                    
-		String serverName = "localhost";
-		String mydatabase = "teste";
-		int porta = 5432;
-		String url = "jdbc:postgresql://" + serverName + ":" + porta +"/" 
-		           + mydatabase;
-		String username = "ti2cc";
-		String password = "ti@cc";
-		boolean status = false;
-
-		try {
-			Class.forName(driverName);
-			conexao = DriverManager.getConnection(url, username, password);
-			status = (conexao == null);
-			System.out.println("Conexão efetuada com o postgres!");
-		} catch (ClassNotFoundException e) { 
-			System.err.println("Conexão NÃO efetuada com o postgres -- Driver não encontrado -- " + e.getMessage());
-		} catch (SQLException e) {
-			System.err.println("Conexão NÃO efetuada com o postgres -- " + e.getMessage());
-		}
-
-		return status;
-	}
+    public void conectar() throws Exception {
+        this.connection = DriverManager.getConnection("jdbc:postgresql://"
+        		+ "db.biicxlhzbaskovsdnlxu.supabase.co:5432/postgres",
+        		"postgres","0wTJ4kNfqxafPx8t");
+       if(connection == null){
+           throw new Exception("Url maybe broked");
+       } else{
+           System.out.println("Connection has been connected with success");
+           flagConnectionIsConnected = true;
+       }
+    }
 	
 	/**
 	 * Metodo para desconectar a aplicacao com o banco de dados.
-	 * @return status - true, se a conexao for fechada; false, caso contrario.
 	 */
-	public boolean close() {
-		boolean status = false;
-		
-		try {
-			conexao.close();
-			status = true;
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-		}
-		return status;
-	}
+    public void close() throws SQLException{
+        try{
+            connection.close();
+            if(connection == null){
+                flagConnectionIsConnected = false;
+            }
+        }catch(Exception e){throw e;}
+    }
+
 }

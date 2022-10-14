@@ -1,21 +1,17 @@
 package dao;
 
-import model.Usuario;
+import model.Acidente;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class AcidenteDAO extends DAO {
 	
 	/**
-	 * Construtor da classe UsuarioDAO, utilizando heranca da classe DAO
+	 * Construtor da classe AcidenteDAO, utilizando heranca da classe DAO.
 	 */
 	public AcidenteDAO() {
 		super();
@@ -30,16 +26,19 @@ public class AcidenteDAO extends DAO {
 		close();
 	}
 	
-	
-	public boolean insert(Produto produto) {
+	/**
+	 * Metodo para inserir um acidente no banco de dados.
+	 * @param acidente - objeto a ser inserido.
+	 * @return status - true, se inserido com sucesso; false, caso contrario.
+	 */
+	public boolean insert(Acidente acidente) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO produto (descricao, preco, quantidade, datafabricacao, datavalidade) "
-		               + "VALUES ('" + produto.getDescricao() + "', "
-		               + produto.getPreco() + ", " + produto.getQuantidade() + ", ?, ?);";
+			String sql = "INSERT INTO acidente"
+		               + "VALUES ( " + acidente.getCodigo()    + " , '"
+		                             + acidente.getNome()      + "', '" 
+		                             + acidente.getDescricao() + "'); ";
 			PreparedStatement st = conexao.prepareStatement(sql);
-		    st.setTimestamp(1, Timestamp.valueOf(produto.getDataFabricacao()));
-			st.setDate(2, Date.valueOf(produto.getDataValidade()));
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -49,81 +48,19 @@ public class AcidenteDAO extends DAO {
 		return status;
 	}
 
-	
-	public Produto get(int id) {
-		Produto produto = null;
-		
-		try {
-			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM produto WHERE id="+id;
-			ResultSet rs = st.executeQuery(sql);	
-	        if(rs.next()){            
-	        	 produto = new Produto(rs.getInt("id"), rs.getString("descricao"), (float)rs.getDouble("preco"), 
-	                				   rs.getInt("quantidade"), 
-	        			               rs.getTimestamp("datafabricacao").toLocalDateTime(),
-	        			               rs.getDate("datavalidade").toLocalDate());
-	        }
-	        st.close();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return produto;
-	}
-	
-	
-	public List<Produto> get() {
-		return get("");
-	}
-
-	
-	public List<Produto> getOrderByID() {
-		return get("id");		
-	}
-	
-	
-	public List<Produto> getOrderByDescricao() {
-		return get("descricao");		
-	}
-	
-	
-	public List<Produto> getOrderByPreco() {
-		return get("preco");		
-	}
-	
-	
-	private List<Produto> get(String orderBy) {
-		List<Produto> produtos = new ArrayList<Produto>();
-		
-		try {
-			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM produto" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
-			ResultSet rs = st.executeQuery(sql);	           
-	        while(rs.next()) {	            	
-	        	Produto p = new Produto(rs.getInt("id"), rs.getString("descricao"), (float)rs.getDouble("preco"), 
-	        			                rs.getInt("quantidade"),
-	        			                rs.getTimestamp("datafabricacao").toLocalDateTime(),
-	        			                rs.getDate("datavalidade").toLocalDate());
-	            produtos.add(p);
-	        }
-	        st.close();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return produtos;
-	}
-	
-	
-	public boolean update(Produto produto) {
+	/**
+	 * Metodo para atualizar um acidente no banco de dados.
+	 * @param usuario - objeto a ser atualizado.
+	 * @return status - true, se atualizado com sucesso; false, caso contrario.
+	 */
+	public boolean update(Acidente acidente) {
 		boolean status = false;
 		try {  
-			String sql = "UPDATE produto SET descricao = '" + produto.getDescricao() + "', "
-					   + "preco = " + produto.getPreco() + ", " 
-					   + "quantidade = " + produto.getQuantidade() + ","
-					   + "datafabricacao = ?, " 
-					   + "datavalidade = ? WHERE id = " + produto.getID();
+			String sql = "UPDATE acidente SET "
+				  	   + "nome = "         + acidente.getNome()       + " , " 
+					   + "descricao = '"   + acidente.getDescricao()  + "', "
+					   + "WHERE codigo = '"+ acidente.getCodigo()     + "'; ";
 			PreparedStatement st = conexao.prepareStatement(sql);
-		    st.setTimestamp(1, Timestamp.valueOf(produto.getDataFabricacao()));
-			st.setDate(2, Date.valueOf(produto.getDataValidade()));
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -133,12 +70,16 @@ public class AcidenteDAO extends DAO {
 		return status;
 	}
 	
-	
-	public boolean delete(int id) {
+	/**
+	 * Metodo para deletar um acidente no banco de dados.
+	 * @param codigo - atributo chave do acidente a ser excluido.
+	 * @return status - true, se deletado com sucesso; false, caso contrario.
+	 */
+	public boolean delete(int codigo) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM produto WHERE id = " + id);
+			st.executeUpdate("DELETE FROM acidente WHERE codigo = " + codigo);
 			st.close();
 			status = true;
 		} catch (SQLException u) {  
@@ -146,4 +87,28 @@ public class AcidenteDAO extends DAO {
 		}
 		return status;
 	}
+
+	/**
+	 * Metodo para listar os acidentes contidos no banco de dados.
+	 * @return acidentes[] - array de objetos do tipo Acidentes com todos os
+	 * que estao no banco de dados.
+	 */	
+    public Acidente[] getAllAcidentes() throws Exception {
+        connection.conectar();
+        Statement st = connection.conectar().createStatement
+        		(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                 ResultSet.CONCUR_UPDATABLE);
+        ResultSet rs = st.executeQuery("SELECT * FROM acidente;");
+        rs.last();
+        Acidente[] acidentes = new Acidente[rs.getRow()];
+        rs.beforeFirst();
+        for (int i = 0; rs.next(); i++) {
+            acidentes[i] = new Acidente(rs.getInt("codigo"), 
+            		                    rs.getString("nome"), 
+            		                    rs.getString("descricao"));
+        }
+        st.close();
+        
+        return acidentes;
+    }
 }

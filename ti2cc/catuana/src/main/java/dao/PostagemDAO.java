@@ -1,21 +1,17 @@
 package dao;
 
-import model.Usuario;
+import model.Postagem;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class PostagemDAO extends DAO {
 	
 	/**
-	 * Construtor da classe UsuarioDAO, utilizando heranca da classe DAO
+	 * Construtor da classe PostagemDAO, utilizando heranca da classe DAO.
 	 */
 	public PostagemDAO() {
 		super();
@@ -30,16 +26,22 @@ public class PostagemDAO extends DAO {
 		close();
 	}
 	
-	
-	public boolean insert(Produto produto) {
+	/**
+	 * Metodo para inserir um postagem no banco de dados.
+	 * @param postagem - objeto a ser inserido.
+	 * @return status - true, se inserido com sucesso; false, caso contrario.
+	 */
+	public boolean insert(Postagem postagem) {
 		boolean status = false;
-		try {
-			String sql = "INSERT INTO produto (descricao, preco, quantidade, datafabricacao, datavalidade) "
-		               + "VALUES ('" + produto.getDescricao() + "', "
-		               + produto.getPreco() + ", " + produto.getQuantidade() + ", ?, ?);";
+		try {			
+			String sql = "INSERT INTO postagem"
+		               + "VALUES ( " + postagem.getID()        + " , '"
+                                     + postagem.getMedico()    + "',  " 
+	                                 + postagem.getAcidente()  + " , '" 
+			                         + postagem.getSite()      + "', '" 
+					                 + postagem.getVideoaula() + "', '" 
+					                 + postagem.getDescricao() + "');";
 			PreparedStatement st = conexao.prepareStatement(sql);
-		    st.setTimestamp(1, Timestamp.valueOf(produto.getDataFabricacao()));
-			st.setDate(2, Date.valueOf(produto.getDataValidade()));
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -49,81 +51,22 @@ public class PostagemDAO extends DAO {
 		return status;
 	}
 
-	
-	public Produto get(int id) {
-		Produto produto = null;
-		
-		try {
-			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM produto WHERE id="+id;
-			ResultSet rs = st.executeQuery(sql);	
-	        if(rs.next()){            
-	        	 produto = new Produto(rs.getInt("id"), rs.getString("descricao"), (float)rs.getDouble("preco"), 
-	                				   rs.getInt("quantidade"), 
-	        			               rs.getTimestamp("datafabricacao").toLocalDateTime(),
-	        			               rs.getDate("datavalidade").toLocalDate());
-	        }
-	        st.close();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return produto;
-	}
-	
-	
-	public List<Produto> get() {
-		return get("");
-	}
-
-	
-	public List<Produto> getOrderByID() {
-		return get("id");		
-	}
-	
-	
-	public List<Produto> getOrderByDescricao() {
-		return get("descricao");		
-	}
-	
-	
-	public List<Produto> getOrderByPreco() {
-		return get("preco");		
-	}
-	
-	
-	private List<Produto> get(String orderBy) {
-		List<Produto> produtos = new ArrayList<Produto>();
-		
-		try {
-			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM produto" + ((orderBy.trim().length() == 0) ? "" : (" ORDER BY " + orderBy));
-			ResultSet rs = st.executeQuery(sql);	           
-	        while(rs.next()) {	            	
-	        	Produto p = new Produto(rs.getInt("id"), rs.getString("descricao"), (float)rs.getDouble("preco"), 
-	        			                rs.getInt("quantidade"),
-	        			                rs.getTimestamp("datafabricacao").toLocalDateTime(),
-	        			                rs.getDate("datavalidade").toLocalDate());
-	            produtos.add(p);
-	        }
-	        st.close();
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
-		}
-		return produtos;
-	}
-	
-	
-	public boolean update(Produto produto) {
+	/**
+	 * Metodo para atualizar um postagem no banco de dados.
+	 * @param usuario - objeto a ser atualizado.
+	 * @return status - true, se atualizado com sucesso; false, caso contrario.
+	 */
+	public boolean update(Postagem postagem) {
 		boolean status = false;
-		try {  
-			String sql = "UPDATE produto SET descricao = '" + produto.getDescricao() + "', "
-					   + "preco = " + produto.getPreco() + ", " 
-					   + "quantidade = " + produto.getQuantidade() + ","
-					   + "datafabricacao = ?, " 
-					   + "datavalidade = ? WHERE id = " + produto.getID();
+		try {  			
+			String sql = "UPDATE postagem SET "
+					   + "medico = '"      + postagem.getMedico()    + "', "
+					   + "acidente = "     + postagem.getAcidente()  + " , "
+					   + "site = '"        + postagem.getSite()      + "', " 
+	                   + "videoaula = '"   + postagem.getVideoaula() + "', "
+					   + "descricao = '"   + postagem.getDescricao() + "', "
+					   + "WHERE id = "     + postagem.getId()        + " ; ";
 			PreparedStatement st = conexao.prepareStatement(sql);
-		    st.setTimestamp(1, Timestamp.valueOf(produto.getDataFabricacao()));
-			st.setDate(2, Date.valueOf(produto.getDataValidade()));
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -133,12 +76,16 @@ public class PostagemDAO extends DAO {
 		return status;
 	}
 	
-	
+	/**
+	 * Metodo para deletar um postagem no banco de dados.
+	 * @param id - atributo chave do postagem a ser excluido.
+	 * @return status - true, se deletado com sucesso; false, caso contrario.
+	 */
 	public boolean delete(int id) {
 		boolean status = false;
 		try {  
 			Statement st = conexao.createStatement();
-			st.executeUpdate("DELETE FROM produto WHERE id = " + id);
+			st.executeUpdate("DELETE FROM postagem WHERE id = " + id);
 			st.close();
 			status = true;
 		} catch (SQLException u) {  
@@ -146,4 +93,31 @@ public class PostagemDAO extends DAO {
 		}
 		return status;
 	}
+
+	/**
+	 * Metodo para listar os postagens contidos no banco de dados.
+	 * @return postagens[] - array de objetos do tipo Postagems com todos os
+	 * que estao no banco de dados.
+	 */	
+    public Postagem[] getAllPostagems() throws Exception {
+        connection.conectar();
+        Statement st = connection.conectar().createStatement
+        		(ResultSet.TYPE_SCROLL_INSENSITIVE,
+                 ResultSet.CONCUR_UPDATABLE);
+        ResultSet rs = st.executeQuery("SELECT * FROM postagem;");
+        rs.last();
+        Postagem[] postagens = new Postagem[rs.getRow()];
+        rs.beforeFirst();
+        for (int i = 0; rs.next(); i++) {
+            postagens[i] = new Postagem(rs.getInt("id"), 
+            		                    rs.getString("medico"), 
+            		                    rs.getInt("acidente"),
+            		                    rs.getString("site"),
+            		                    rs.getString("videoaula"),
+            		                    rs.getString("descricao"));     
+        }
+        st.close();
+        
+        return postagens;
+    }
 }
