@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Catuana - Cadastro de Publicações</title>
+    <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style-informacoes.css">
+    <script src="script-informacoes.js"></script>
+    <script src="script-login.js"></script>
+</head>
+
+<body onload="init()">
+    <h1>Cadastro de Publicações sobre Primeiros Socorros</h1>
+
+    <div class="container">
+        <div class="row">
+            <div id="msg" class="col-sm-10 offset-sm-1 "> </div>
+        </div>
+
+        <form id="form-informacao">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label for="inputId">ID</label>
+                    <input type="text" class="form-control" id="inputId" placeholder="Preenchido Automaticamente"
+                        disabled>
+                </div>
+                <div class="col-sm-8">
+                    <div id="acidentes_Cadastrados"> </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <label for="inputSite">Site (*)</label>
+                    <input type="text" class="form-control" id="inputSite" required
+                        placeholder="Informe um site relevante">
+                </div>
+                <div class="col-sm-6">
+                    <label for="inputVideoaula">Videoaula (*)</label>
+                    <input type="text" class="form-control" id="inputVideoaula" required
+                        placeholder="Informe o link da videoaula">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <label for="inputDescricao">Desrição (*)</label>
+                    <textarea type="text" class="form-control" id="inputDescricao" required
+                        placeholder="Informe uma breve descrição sobre a sua publicação"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <small>(*) Campos obrigatórios</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-12">
+                    <a class="btn btn-outline-dark" href="conteudo.html" role="button">Voltar</a>
+                    <input type="button" class="btn btn-success" id="btnInsert" value="Inserir">
+                    <input type="button" class="btn btn-warning" id="btnUpdate" value="Alterar">
+                    <input type="button" class="btn btn-danger" id="btnDelete" value="Excluir">
+                    <input type="button" class="btn btn-secondary" id="btnClear" value="Limpar">
+                    <a href="informacoes.html"><input type="button" class="btn btn-info" id="btnSearch"
+                            value="Pesquisar Informações"></a>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table id="grid-informacoes" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"># </th>
+                            <th scope="col">Acidente </th>
+                            <th scope="col">Site </th>
+                            <th scope="col">Videoaula</th>
+                            <th scope="col">Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-informacoes">
+                        <tr>
+                            <td scope="row">1</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="script-informacoes.js"></script>
+    <script>
+
+        // Exibir acidentes cadastrados
+        let acidentes_Cadastrados = "";
+        let select_Acidente = "";
+        conteudo_Inicial = db_conteudo_inicial;
+        for (i = 0; i < conteudo_Inicial.data.length; i++) {
+            conteudo_Ok = conteudo_Inicial.data[i];
+            acidentes_Cadastrados += `<option value="${conteudo_Ok.nomec}">${conteudo_Ok.nomec}   </option>`
+
+        }
+        select_Acidente = `<label for="inputAcidente">Selecione o tipo de acidente (*)</label> 
+                <select class="form-control" id="inputAcidente">
+                                ${acidentes_Cadastrados}                   
+                            </select> 
+                        </div> `
+        document.getElementById('acidentes_Cadastrados').innerHTML = select_Acidente;
+
+
+        function exibeInformacoes() {
+            // Remove todas as linhas do corpo da tabela
+            $("#table-informacoes").html("");
+
+            // Popula a tabela com os registros do banco de dados
+            // Mostrando apenas o do medico
+            for (i = 0; i < db.data.length; i++) {
+                let informacao = db.data[i];
+                if (usuarioCorrente.nome == informacao.medico) {
+                    $("#table-informacoes").append(`<tr><td scope="row">${informacao.id}</td>
+                                                <td>${informacao.acidente}</td>
+                                                <td>${informacao.site}</td>
+                                                <td>${informacao.videoaula}</td>
+                                                <td>${informacao.descricao}</td>
+                                            </tr>`);
+                }
+            }
+        }
+
+        function init() {
+            // Adiciona funções para tratar os eventos 
+            $("#btnInsert").click(function () {
+                // Verfica se o formulário está preenchido corretamente
+                if (!$('#form-informacao')[0].checkValidity()) {
+                    displayMessage("Cadastre todas as informações pedidas corretamente");
+                    return;
+                }
+
+                // Obtem os valores dos campos do formulário
+                let campoAcidente = $("#inputAcidente").val();
+                let campoMedico = usuarioCorrente.nome;
+                let campoEmail = usuarioCorrente.email;
+                let campoSite = $("#inputSite").val();
+                let campoVideoaula = $("#inputVideoaula").val();
+                let campoDescricao = $("#inputDescricao").val();
+                let informacao = {
+                    acidente: campoAcidente,
+                    medico: campoMedico,
+                    email: campoEmail,
+                    site: campoSite,
+                    videoaula: campoVideoaula,
+                    descricao: campoDescricao
+                };
+
+                insertInformacao(informacao);
+
+                // Reexibe os informacoes
+                exibeInformacoes();
+
+                // Limpa o formulario
+                $("#form-informacao")[0].reset();
+            });
+
+            // Intercepta o click do botão Alterar
+            $("#btnUpdate").click(function () {
+                // Obtem os valores dos campos do formulário
+                let campoId = $("#inputId").val();
+                if (campoId == "") {
+                    displayMessage("Selecione uma informação para ser alterada.");
+                    return;
+                }
+                let campoAcidente = $("#inputAcidente").val();
+                let campoMedico = usuarioCorrente.nome;
+                let campoEmail = usuarioCorrente.email;
+                let campoSite = $("#inputSite").val();
+                let campoVideoaula = $("#inputVideoaula").val();
+                let campoDescricao = $("#inputDescricao").val();
+                let informacao = {
+                    acidente: campoAcidente,
+                    medico: campoMedico,
+                    email: campoEmail,
+                    site: campoSite,
+                    videoaula: campoVideoaula,
+                    descricao: campoDescricao
+                };
+
+
+
+                updateInformacao(parseInt(campoId), informacao);
+
+                // Reexibe os informacoes
+                exibeInformacoes();
+
+                // Limpa o formulario
+                $("#form-informacao")[0].reset();
+            });
+
+            // Intercepta o click do botão Excluir
+            $("#btnDelete").click(function () {
+                let campoId = $("#inputId").val();
+                if (campoId == "") {
+                    displayMessage("Selecione a informação a ser excluída.");
+                    return;
+                }
+                deleteInformacao(parseInt(campoId));
+
+                // Reexibe os informacoes
+                exibeInformacoes();
+
+                // Limpa o formulario
+                $("#form-informacao")[0].reset();
+            });
+
+            // Intercepta o click do botão Listar Informacoes
+            $("#btnClear").click(function () {
+                $("#form-informacao")[0].reset();
+            });
+
+            // Oculta a mensagem de aviso após alguns segundos
+            $('#msg').bind("DOMSubtreeModified", function () {
+                window.setTimeout(function () {
+                    $(".alert").fadeTo(500, 0).slideUp(500, function () {
+                        $(this).remove();
+                    });
+                }, 5000);
+            });
+
+            // Preenche o formulário quando o usuario clicar em uma linha da tabela 
+            $("#grid-informacoes").on("click", "tr", function (e) {
+                let linhaInformacao = this;
+                colunas = linhaInformacao.querySelectorAll("td");
+
+                $("#inputId").val(colunas[0].innerText);
+                $("#inputAcidente").val(colunas[1].innerText);
+                $("#inputSite").val(colunas[2].innerText);
+                $("#inputVideoaula").val(colunas[3].innerText);
+                $("#inputDescricao").val(colunas[4].innerText);
+            });
+
+            exibeInformacoes();
+        }
+    </script>
+</body>
+
+</html>
