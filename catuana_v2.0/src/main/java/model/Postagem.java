@@ -23,12 +23,24 @@ public class Postagem {
 	}
 
     /**
+     * Construtor com passagem de parametros da classe Postagem, sem id
+     */
+	public Postagem(String medico, int acidente, String site,
+                    String videoaula, String descricao) {
+        setMedico(medico);
+        setAcidente(acidente);
+        setSite(site);
+        setVideoaula(videoaula);
+        setDescricao(descricao);
+	}
+
+    /**
      * Construtor com passagem de parametros da classe Postagem.
      */
 	public Postagem(int id, String medico, int acidente, String site,
-                   String videoaula, String descricao) {
-		setId(id);
-        setMedico(medico);
+                    String videoaula, String descricao) {
+  		setId(id);     
+	    setMedico(medico);
         setAcidente(acidente);
         setSite(site);
         setVideoaula(videoaula);

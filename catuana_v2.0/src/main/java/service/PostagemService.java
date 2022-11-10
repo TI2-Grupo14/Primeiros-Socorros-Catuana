@@ -27,14 +27,13 @@ public class PostagemService {
 		
 		boolean status = false;
 		
-		int id = Integer.parseInt(request.queryParams("id"));
 		String medico = request.queryParams("medico");
 		int acidente = Integer.parseInt(request.queryParams("acidente"));
 		String site = request.queryParams("site");
 		String videoaula = request.queryParams("videoaula");
 		String descricao = request.queryParams("descricao");
 		
-		Postagem postagem = new Postagem(id, medico, acidente, site, videoaula, descricao);
+		Postagem postagem = new Postagem(medico, acidente, site, videoaula, descricao);
 		
 		if(postagemDAO.insert(postagem) == true) {
             statusonse.status(201);

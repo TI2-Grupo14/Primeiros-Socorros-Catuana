@@ -22,43 +22,59 @@ public class Aplicacao {
 	
     public static void main(String[] args) {
     	
-		List<Postagem> postagens = new ArrayList<Postagem>();	
-		List<Usuario> usuarios = new ArrayList<Usuario>();
+    	    /* test UsuarioDAO */
+    	    List<Usuario> usuarios = new ArrayList<Usuario>();
+    	    
+		    UsuarioDAO userDAO = new UsuarioDAO();
+		    usuarios = userDAO.getAll();
+		    
+		    Usuario userInsert = new Usuario("Teste01", "11100000000", "teste01", "11100000000", "teste#01", false, false);
+		    Usuario userInsert2 = new Usuario("Teste02", "2220000000", "teste02", "22200000000", "teste#02", true, false);
+		    
+		    System.out.println("\n" + userInsert);
+		    System.out.println("\n" + userInsert2);
+		    
+		    userDAO.insert(userInsert);
+			userDAO.delete("11100000000");
+			userDAO.update(userInsert2);
+			
+			for(int i = 0; i < usuarios.size(); i++) {
+			    Usuario user = usuarios.get(i);
+			   System.out.println(user);
+			}
+			   
+     	 	JSONArray allUsers = new JSONArray();
+		    allUsers = usuarioService.getAll(null, null);
+		    System.out.println(allUsers);
+    	 
+    	
+    	    /* test PostagemDAO */
+    		List<Postagem> postagens = new ArrayList<Postagem>();
+    		
+		    PostagemDAO postDAO = new PostagemDAO();
+		    postagens = postDAO.getAll();
+		    
+		    Postagem postInsert = new Postagem("11590442016", 5, "https://teste", "https://www.teste", "teste");
+		    Postagem postInsert2 = new Postagem(14, "11590442016", 6, "https://teste2", "https://www.teste2", "teste2");
+		    
+		    System.out.println("\n" + postInsert);
+		    System.out.println("\n" + postInsert2);
+		    		    
+		    postDAO.insert(postInsert);
+		    postDAO.delete(16);   // aumentar mais um
+		    postDAO.update(postInsert2);
 		
-		PostagemDAO postDAO = new PostagemDAO();
-		UsuarioDAO userDAO = new UsuarioDAO();
-		
-		usuarios = userDAO.getAll();
-		postagens = postDAO.getAll();
-		
-				
-		//Usuario userGet = userDAO.get("00000000001");
-		//System.out.println("\n\n" + userGet);
-		
-		for(int i = 0; i < usuarios.size(); i++) {
-			Usuario user = usuarios.get(i);
-			System.out.println(user);
-		}
 
-		for(int i = 0; i < postagens.size(); i++) {
-			Postagem post = postagens.get(i);
-			System.out.println(post);
-		}
-		
-		JSONArray maior = new JSONArray();
-		
-        /*
-		for(Usuario i : userDAO.getAll()) {
-			
-			maior.put(i.toJson());
-		}
-		System.out.println(maior);
-		*/
-		
-		maior = usuarioService.getAll(null, null);
-		System.out.println(maior);
-			
-        
+			for(int i = 0; i < postagens.size(); i++) {
+			    Postagem post = postagens.get(i);
+			    System.out.println(post);
+			}
+			   
+     	 	JSONArray allPosts = new JSONArray();
+		    allPosts = postagemService.getAll(null, null);
+		    System.out.println(allPosts);		
+
+      
     	//port(6587);
     	port(5432);
     	

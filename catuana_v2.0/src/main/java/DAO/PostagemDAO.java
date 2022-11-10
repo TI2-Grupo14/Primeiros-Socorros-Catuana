@@ -35,14 +35,14 @@ public class PostagemDAO extends DAO {
 	public boolean insert(Postagem postagem) {
 		boolean status = false;
 		try {			
-			String sql = "INSERT INTO postagem"
-		               + "VALUES ( " + postagem.getId()        + " , '"
-                                     + postagem.getMedico()    + "',  " 
-	                                 + postagem.getAcidente()  + " , '" 
-			                         + postagem.getSite()      + "', '" 
-					                 + postagem.getVideoaula() + "', '" 
-					                 + postagem.getDescricao() + "');";
+			String sql = "INSERT INTO postagem (medico, acidente, site, videoaula, descricao) "
+		               + "VALUES ( '" + postagem.getMedico()    + "',  " 
+	                                  + postagem.getAcidente()  + " , '" 
+			                          + postagem.getSite()      + "', '" 
+					                  + postagem.getVideoaula() + "', '" 
+					                  + postagem.getDescricao() + "');";
 			PreparedStatement st = conexao.prepareStatement(sql);
+			System.out.println(sql);
 			st.executeUpdate();
 			st.close();
 			status = true;
@@ -84,8 +84,9 @@ public class PostagemDAO extends DAO {
 					   + "acidente = "     + postagem.getAcidente()  + " , "
 					   + "site = '"        + postagem.getSite()      + "', " 
 	                   + "videoaula = '"   + postagem.getVideoaula() + "', "
-					   + "descricao = '"   + postagem.getDescricao() + "', "
+					   + "descricao = '"   + postagem.getDescricao() + "'  "
 					   + "WHERE id = "     + postagem.getId()        + " ; ";
+			System.out.println(sql);
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
