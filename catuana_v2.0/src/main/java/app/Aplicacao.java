@@ -22,7 +22,14 @@ public class Aplicacao {
     	
 		List<Usuario> usuarios = new ArrayList<Usuario>();
 		UsuarioDAO userDAO = new UsuarioDAO();
-		usuarios = userDAO.getAll();
+		usuarios = userDAO.getAllByAdm();
+		
+		//Usuario userInsert = new Usuario("Teste03", "00000000001", "teste03@email.com", "00000000003",
+        //        "teste03#", true, true);
+		//System.out.println(userInsert);
+		
+		//Usuario userGet = userDAO.get("00000000001");
+		//System.out.println("\n\n" + userGet);
 		
 		for(int i = 0; i < usuarios.size(); i++) {
 			Usuario user = usuarios.get(i);
@@ -30,11 +37,16 @@ public class Aplicacao {
 		}
 		
 		JSONArray maior = new JSONArray();
-        
+		
+        /*
 		for(Usuario i : userDAO.getAll()) {
 			
 			maior.put(i.toJson());
 		}
+		System.out.println(maior);
+		*/
+		
+		maior = usuarioService.getAll(null, null);
 		System.out.println(maior);
 			
         
@@ -42,14 +54,17 @@ public class Aplicacao {
     	port(5432);
     	
     	staticFiles.location("/public");
+    	
+    	//get("/usuario", usuarioService::getAll);
     
         get("/usuario", (request, response) -> usuarioService.getAll(request, response));
-        post("/usuario/insert", (request, response) -> usuarioService.insert(request, response));
-        get("/usuario/:cpf", (request, response) -> usuarioService.get(request, response));
+        
+        //post("/usuario/insert", (request, response) -> usuarioService.insert(request, response));
+        //get("/usuario/:cpf", (request, response) -> usuarioService.get(request, response));
         //get("/institutions/offset/:index", (request, response) -> usuarioService.getOffset(request, response));
         //get("/institutions/user/:username", (request, response) -> usuarioService.getUser(request, response));
-        post("/usuario/update/:cpf", (request, response) -> usuarioService.update(request, response));
-        get("/usuario/delete/:cpf", (request, response) -> usuarioService.delete(request, response));
+        //post("/usuario/update/:cpf", (request, response) -> usuarioService.update(request, response));
+        //get("/usuario/delete/:cpf", (request, response) -> usuarioService.delete(request, response));
         
         /*
         get("/carousel", (request, response) -> carouselService.getAll(request, response));

@@ -34,7 +34,7 @@ public class UsuarioDAO extends DAO {
 	public boolean insert(Usuario usuario) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO usuario"
+			String sql = "INSERT INTO usuario "
 		               + "VALUES ( '" + usuario.getNome()    + "', '" 
 					                  + usuario.getCpf()     + "', '"
 					                  + usuario.getEmail()   + "', '" 
@@ -42,6 +42,7 @@ public class UsuarioDAO extends DAO {
 					                  + usuario.getSenha()   + "',  " 
 					                  + usuario.getAdm()     + " ,  " 
 					                  + usuario.getMedico()  + " ); ";
+			System.out.println(sql);
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -83,9 +84,10 @@ public class UsuarioDAO extends DAO {
 					   + "email = '"    + usuario.getEmail()   + "', " 
 					   + "celular = '"  + usuario.getCelular() + "', "
 					   + "senha = '"    + usuario.getSenha()   + "', "
-				       + "adm = "       + usuario.getAdm()     + " , "			
-				       + "medico = "    + usuario.getMedico()  + " , "			
+				       + "adm = "       + usuario.getAdm()     + ",  "			
+				       + "medico = "    + usuario.getMedico()  + "   "			
 		               + "WHERE cpf = '"+ usuario.getCpf()     + "'; ";
+			System.out.println(sql);
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
@@ -169,7 +171,7 @@ public class UsuarioDAO extends DAO {
     /**
 	 * Metodo para listar todos usuarios ordenados por cpf. 
 	 */
-	public List<Usuario> getByAllCpf() {
+	public List<Usuario> getAllByCpf() {
 		return getAll("cpf");		
 	}
 
@@ -192,22 +194,6 @@ public class UsuarioDAO extends DAO {
 	 */
 	public List<Usuario> getAllBySenha() {
 		return getAll("senha");		
-	}
-
-    /**
-	 * Metodo para listar todos usuarios ordenados por adm. Caso haja
-	 * empate, ordenar por nome.
-	 */
-	public List<Usuario> getAllByAdm() {
-		return getAll("adm, nome");		
-	}
-
-    /**
-	 * Metodo para listar todos usuarios ordenados por medico. Caso haja
-	 * empate, ordenar por nome.
-	 */
-	public List<Usuario> getAllByMedico() {
-		return getAll("medico, nome");		
 	}
 
 	/*
