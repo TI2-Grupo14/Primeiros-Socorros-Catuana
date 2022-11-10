@@ -1,10 +1,10 @@
 /* LAYOUT */
 @import url("CSS/layout/home.css");
-@import url("CSS/layout/cadastro-usuario.css");
+ @import url("CSS/layout/cadastro-usuario.css");
 @import url("CSS/layout/conteudo.css");
 @import url("CSS/layout/login.css");
 @import url("CSS/layout/cadastro.css");
-@import url("CSS/layout/perfil.css");
+@import url("CSS/layout/perfil.css"); 
 
 /* COMPONENTS */
 @import url("CSS/components/header.css");

@@ -1,42 +1,4 @@
-:root{
-    --main-color:(#ffffff);
-    --secundary-color:(#40bba4);
-    --terciary-color:(#363e43);
-    --hyligth-color-1:(#eb7062);
-    --hyligth-color-2:(#f1c41f);
-    --hyligth-color-3:(#efaf6a);
-}
-
-/* MENU */
-.header{
-    background: rgb(0, 0, 0) !important;
-    margin-bottom: 30px !important;
-}
-.logo{
-    width: 70px;
-    margin-left: 10px !important;
-}
-.menu_area{
-    margin-top: 20px  !important;
-}
-.menu_area nav a{
-    background-color: rgba(97, 85, 85, 0.466) !important;
-    color: white;
-}
-.menu_area nav a:hover{
-    background-color: rgb(54, 110, 230) !important;
-}
-.active > header{
-    background-color: rgba(73, 39, 95, 0.664) !important;
-}
-.header_area{
-    padding: 20px !important;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    
+#login {
     background: #363e43;
 } 
 

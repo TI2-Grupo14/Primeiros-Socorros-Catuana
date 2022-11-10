@@ -22,24 +22,32 @@
 
 <body>
   <main>
-    <header class="container header">
-      <div class="row">
-        <div class="col-12 header_area">
-          <div class="row">
-            <div class="col-12 col-sm-12 col-md-4 col-lg-2">
-              <img title="logo_imagem" src="img/logo.png" class="logo">
-            </div>
 
-            <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
-              <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link" href="index.html">Home</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="login.html">Login</a>
-              </nav>
-            </div>
+    <header class="container header">
+    <div class="row">
+      <div class="col-12 header_area">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+            <img title="logo_imagem" src="img/logo.png" class="logo">
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
+
+            <nav class="nav nav-pills flex-column flex-sm-row">
+              <a class="flex-sm-fill text-sm-center nav-link" href="conteudo.html">Conteúdo</a>
+              <a class="flex-sm-fill text-sm-center nav-link" href="perfil.html">Perfil</a>
+
+              <div id="botao_logout"> </div>
+              <a id="logar" class="flex-sm-fill text-sm-center nav-link" href="login.html">Login</a>
+
+            </nav>
 
           </div>
+
         </div>
-    </header>
+
+      </div>
+  </header>
 
     <a id="retorno" href="conteudo.html">Retornar</a>
 
@@ -77,7 +85,7 @@
     let id = parametros.get('id');
 
     document.getElementById('acidenteSelecionado').innerHTML = `
-        <p class="acidenteSelecionado"> Primeiros Socorros para ${db_conteudo_inicial.data[id - 1].nomec} </p> `;
+        <h1 class="acidenteSelecionado"> Primeiros Socorros para ${db_conteudo_inicial.data[id - 1].nomec} </h1> `;
 
     let info = '';
     for (i = 0; i < db.data.length; i++) {
