@@ -160,7 +160,7 @@ INSERT INTO USUARIO
    VALUES ('Giovanne Castro', '50315422092', 'giovannecastro@email.com', '31961892922', 'Giovanne123#', false, true);
 
 INSERT INTO USUARIO
-   VALUES ('Pedro Marques', '90811018032', 'pedromarques@email.com', '119852687772', 'Pedro123#', false, true);
+   VALUES ('Pedro Marques', '90811018032', 'pedromarques@email.com', '11985268772', 'Pedro123#', false, true);
 
 INSERT INTO USUARIO
    VALUES ('Sandra Rodrigues', '61690976047', 'sandrarodrigues@email.com', '33933665478', 'Sandra123#', false, true);
