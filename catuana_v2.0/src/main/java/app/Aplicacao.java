@@ -2,38 +2,47 @@ package app;
 
 import static spark.Spark.*;
 import service.UsuarioService;
-//import service.CarouselService;
-//import service.NewsService;
+import service.PostagemService;
 
 import model.Usuario;
+import model.Postagem;
 import java.util.ArrayList;
 import java.util.List;
 import DAO.UsuarioDAO;
+import DAO.PostagemDAO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Aplicacao {
 	
 	private static UsuarioService usuarioService = new UsuarioService();
+	private static PostagemService postagemService = new PostagemService();
 	//private static CarouselService carouselService = new CarouselService();
 	//private static NewsService newsService = new NewsService();
 	
     public static void main(String[] args) {
     	
+		List<Postagem> postagens = new ArrayList<Postagem>();	
 		List<Usuario> usuarios = new ArrayList<Usuario>();
+		
+		PostagemDAO postDAO = new PostagemDAO();
 		UsuarioDAO userDAO = new UsuarioDAO();
-		usuarios = userDAO.getAllByAdm();
 		
-		//Usuario userInsert = new Usuario("Teste03", "00000000001", "teste03@email.com", "00000000003",
-        //        "teste03#", true, true);
-		//System.out.println(userInsert);
+		usuarios = userDAO.getAll();
+		postagens = postDAO.getAll();
 		
+				
 		//Usuario userGet = userDAO.get("00000000001");
 		//System.out.println("\n\n" + userGet);
 		
 		for(int i = 0; i < usuarios.size(); i++) {
 			Usuario user = usuarios.get(i);
 			System.out.println(user);
+		}
+
+		for(int i = 0; i < postagens.size(); i++) {
+			Postagem post = postagens.get(i);
+			System.out.println(post);
 		}
 		
 		JSONArray maior = new JSONArray();

@@ -12,8 +12,17 @@ public class UsuarioService {
 
 	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
+	/**
+	 * Construtor padrao da classe UsuarioService.
+	 */
 	public UsuarioService() {}
 	
+	/**
+	 * Metodo para inserir usuario no banco de dados.
+	 * @param request -
+	 * @param response -
+	 * @return true, se inserido corretamente; false, caso contrario.
+	 */
 	public boolean insert(Request request, Response response) {
 		
 		boolean status = false;
@@ -29,15 +38,20 @@ public class UsuarioService {
 		Usuario usuario = new Usuario(nome, cpf, email, celular, senha, adm, medico);
 		
 		if(usuarioDAO.insert(usuario) == true) {
-            response.status(201); // 201 Created
+            response.status(201);
 		} else {
-			response.status(404); // 404 Not found
+			response.status(404);
 		}
 		
 		return status;
 	}
 
-	
+	/**
+	 * Metodo para obter um JSON com o usuario selecionado pelo cpf.
+	 * @param request -
+	 * @param response -
+	 * @return - objeto JSON usuarios.
+	 */
 	public JSONObject get(Request request, Response response) {
 		
         String cpf = (request.params(":cpf"));
@@ -50,45 +64,33 @@ public class UsuarioService {
 		return usuario == null ? null : usuario.toJson();
 	}
 	
-	/*
-	public JSONObject getOffset(Request request, Response response) {
-		
-		int index = Integer.parseInt(request.params(":index"));		
-		Usuario resp = usuarioDAO.getOffset(index);
-		
-		if(resp != null) response.status(200);
-        else response.status(404);
-		
-		return resp == null ? null : resp.toJson();
-	}
-	*/
-	/*
-	public JSONObject getUser(Request request, Response response) {
-		
-		String username = request.params(":username");		
-		Usuario resp = usuarioDAO.getUser(username);
-		
-		if(resp != null) response.status(200);
-        else response.status(404);
-		
-		return resp == null ? null : resp.toJson();
-	}
-	*/
-	
+	/**
+	 * Metodo para obter um array JSON com todos os usuarios contidos no banco
+	 * de dados.
+	 * @param request
+	 * @param response
+	 * @return - objeto JSON todos os usuarios.
+	 */
 	public JSONArray getAll(Request request, Response response) {
 		
-		JSONArray maior = new JSONArray();
+		JSONArray allUsuarios = new JSONArray();
         
 		for(Usuario i : usuarioDAO.getAll()) {
 			
-			maior.put(i.toJson());
+			allUsuarios.put(i.toJson());
 		}
-		return maior == null ? null : maior;
+		return allUsuarios == null ? null : allUsuarios;
 	}
-
+    
+	/**
+	 * Metodo para atualizar um usuario no banco de dados.
+	 * @param request -
+	 * @param response -
+	 * @return true, se atualizado corretamente; false, caso contrario.
+	 */
 	public boolean update(Request request, Response response) {
 		
-		boolean resp = false;
+		boolean status = false;
         String cpf = (request.params(":cpf"));
 		
         Usuario usuario = usuarioDAO.get(cpf);
@@ -107,16 +109,21 @@ public class UsuarioService {
         	
         	response.status(200);
         	
-        	resp = true;
+        	status = true;
         } 
         else response.status(404);
-        return resp;
+        return status;
 	}
 
-	
+	/**
+	 * Metodo para deletar um usuario no banco de dados.
+	 * @param request -
+	 * @param response -
+	 * @return true, se deletado corretamente; false, caso contrario.
+	 */
 	public boolean delete(Request request, Response response) {
 		
-		boolean resp = false;
+		boolean status = false;
         String cpf = (request.params(":cpf"));
         
         Usuario usuario = usuarioDAO.get(cpf);
@@ -125,16 +132,16 @@ public class UsuarioService {
         	
             usuarioDAO.delete(cpf);
             
-            resp = true;
+            status = true;
            
             response.status(200);
         } 
         else {
         	
-        	resp = false;
+        	status = false;
         	
             response.status(404);
         }
-		return resp;
+		return status;
 	}
 }

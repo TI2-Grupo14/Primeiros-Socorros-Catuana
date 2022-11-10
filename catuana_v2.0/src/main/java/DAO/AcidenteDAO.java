@@ -34,7 +34,7 @@ public class AcidenteDAO extends DAO {
 	public boolean insert(Acidente acidente) {
 		boolean status = false;
 		try {
-			String sql = "INSERT INTO acidente"
+			String sql = "INSERT INTO acidente "
 		               + "VALUES ( " + acidente.getCodigo()    + " , '"
 		                             + acidente.getNome()      + "', '" 
 		                             + acidente.getDescricao() + "'); ";
@@ -87,7 +87,33 @@ public class AcidenteDAO extends DAO {
 		}
 		return status;
 	}
+
+	/**
+	 * Metodo para obter acidentes por codigo.
+	 * @param codigo a ser procurado.
+	 * @return acidente - selecionado pelo nome.
+	 */
+	public Acidente get(int codigo) {
 	
+		Acidente acidente = null;
+		
+		try {
+			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			String sql = "SELECT * FROM acidente WHERE codigo = " + codigo;
+			ResultSet rs = st.executeQuery(sql);	
+	   
+	        if(rs.next()){            
+	        	 acidente = new Acidente(rs.getInt("codigo"), 
+				                         rs.getString("nome"), 
+								         rs.getString("descricao"));
+	        }
+	        st.close();
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		return acidente;
+	}
+
 	/**
 	 * Metodo para obter acidentes por nome.
 	 * @param nome a ser procurado (atributo UNIQUE).
