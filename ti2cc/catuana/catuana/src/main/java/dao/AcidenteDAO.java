@@ -144,7 +144,7 @@ public class AcidenteDAO extends DAO {
 		
 		try {
 			Statement st = conexao.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String sql = "SELECT * FROM acidente" + ((atributo.trim().length() == 0) ? "" : (" ORDER BY " + atributo));
+			String sql = "SELECT * FROM acidente " + ((atributo.trim().length() == 0) ? "" : (" ORDER BY " + atributo));
 			ResultSet rs = st.executeQuery(sql);	           
 	        while(rs.next()) {	            	
 	        	Acidente acidente = new Acidente(rs.getInt("codigo"), 
