@@ -19,7 +19,7 @@ import spark.Filter;
 public class Aplicacao {
 	
 	private static UsuarioService usuarioService = new UsuarioService();
-//	private static PostagemService postagemService = new PostagemService();
+	private static PostagemService postagemService = new PostagemService();
 	
     public static void main(String[] args) {
         port(3300);
@@ -36,21 +36,12 @@ public class Aplicacao {
         get("/usuarioByNome",  usuarioService::getAllByNome);
         post("/usuario/insert",  usuarioService::insert);
         get("/usuario/:cpf", usuarioService::get);
-        //get("/institutions/offset/:index", (request, response) -> usuarioService.getOffset(request, response));
-        //get("/institutions/user/:username", (request, response) -> usuarioService.getUser(request, response));
 
-        //get("/usuario/delete/:cpf", (request, response) -> usuarioService.delete(request, response));
+        get("/postagem", postagemService::getAll);
+        delete("/postagem/delete/:id", postagemService::delete);
+        post("/postagem/insert", postagemService::insert);
+        post("/postagem/update/:id", postagemService::update);
 
-        /*
-        get("/carousel", (request, response) -> carouselService.getAll(request, response));
-        get("/carousel/offset/:index", (request, response) -> carouselService.getOffset(request, response));
-        post("/carousel/insert", (request, response) -> carouselService.insert(request, response));
-        get("/carousel/delete/:id", (request, response) -> carouselService.delete(request, response));
 
-        get("/news/:inst_id", (request, response) -> newsService.getAll(request, response));
-        post("/news/insert", (request, response) -> newsService.insert(request, response));
-        post("/news/update/:id", (request, response) -> newsService.update(request, response));
-        get("/news/delete/:id", (request, response) -> newsService.delete(request, response));
-        */
     }
 }
