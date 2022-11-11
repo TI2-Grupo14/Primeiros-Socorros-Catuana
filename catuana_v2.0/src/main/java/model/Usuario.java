@@ -34,8 +34,8 @@ public class Usuario {
         setEmail(email);
         setCelular(celular);
         setSenha(senha);
-        setAdm(adm);
-        setMedico(medico);
+        this.adm = adm;
+		this.medico = medico;
 	}
 
     /* ----------------- Metodos getters da classe Usuario ----------------- */

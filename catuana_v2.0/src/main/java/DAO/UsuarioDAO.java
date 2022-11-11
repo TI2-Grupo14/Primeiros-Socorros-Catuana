@@ -87,7 +87,7 @@ public class UsuarioDAO extends DAO {
 				       + "adm = "       + usuario.getAdm()     + ",  "			
 				       + "medico = "    + usuario.getMedico()  + "   "			
 		               + "WHERE cpf = '"+ usuario.getCpf()     + "'; ";
-			System.out.println(sql);
+
 			PreparedStatement st = conexao.prepareStatement(sql);
 			st.executeUpdate();
 			st.close();
