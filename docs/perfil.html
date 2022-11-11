@@ -31,9 +31,10 @@
 
           <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
             <nav class="nav nav-pills flex-column flex-sm-row">
+              <a class="flex-sm-fill text-sm-center nav-link" href="https://creator.voiceflow.com/prototype/636db7346ca8dfcaff60717a">FAQ</a>
               <a class="flex-sm-fill text-sm-center nav-link" href="index.html">Home</a>
               <a class="flex-sm-fill text-sm-center nav-link" href="conteudo.html">Conteúdo</a>
-              <a id="logar" class="flex-sm-fill text-sm-center nav-link" href="login.html">Login</a>
+              <a id="logar" class="flex-sm-fill text-sm-center nav-link" href="login.html">Logout</a>
 
               <div id="botao_logout"> </div>
 
@@ -45,25 +46,44 @@
       </div>
   </header>
 
-  <main class="container">
+  <main class="container" id="main-perfil">
 
-    <h1 class="row">Informações Pessoais</h1>
-
-    <div class="row">
-
-
-
-    </div>
-
-    <h1 class="row titulo-cadastro">Cadastro de Conteúdo</h1>
+    <h1 class="row" id="titulo-perfil">Informações Pessoais</h1>
 
     <div class="row">
 
-      <div class="btn-group" id="botao_cadastro-video"></div>
+      <div class="col-6 item-perfil">
+        <label for="name">Nome:</label><br>
+        <span id="name"></span>
+      </div>
 
-      <div class="btn-group" id="botao_cadastro-noticia"></div>
+      <div class="col-6" item-perfil>
+        <label for="email">E-mail:</label><br>
+        <span id="email"></span>
+      </div>
+
+      <div class="col-6" item-perfil>
+        <label for="tipo">Tipo:</label><br>
+        <span id="tipo"></span>
+      </div>
+
+      <div class="col-6" item-perfil>
+        <label for="cel">Celular:</label><br>
+        <span id="cel"></span>
+      </div>
 
     </div>
+
+    <div class="row">
+      <button type="button" class="btn btn-sm btn-outline-secondary">Alterar Informações</button>
+    </div>
+
+    <div class="row" id="adm">
+      <a href="listaUsuario.html">Lista de usuários</a>
+      <a href="informacoes.html">Informações</a>
+
+    </div>
+
 
   </main>
 

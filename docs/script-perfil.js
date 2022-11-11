@@ -1,16 +1,26 @@
 // Adiciona botoes para cadastrar apenas para medicos
 
-let botaoCadastroVideo = "";
-let botaoCadastroNoticia = "";
+user = JSON.parse(sessionStorage.getItem('usuarioCorrente'));
 
-if (usuarioCorrente.tipo == 2) {
-  botaoCadastroVideo += ` <div class="botao_cadastro" > <a href="informacoes-cadastro.html" id="cadastro_video" type="button" class="btn btn-primary my-2"" >Cadastre novas publicações</a> </div>`;
 
-  botaoCadastroNoticia += ` <div class="botao_cadastro" > <a href="noticia-cadastro.html" id="cadastro_noticia" type="button" class="btn btn-primary my-2"" >Cadastre novas noticias</a> </div>`;
 
-  document.getElementsByClassName('titulo-cadastro').style.display = "";
+nomeUsuario = document.getElementById('name');
+emailUsuario = document.getElementById('email');
+tipoUsuario = document.getElementById('tipo');
+celUsuario = document.getElementById('cel');
+
+adm = document.getElementById('adm');
+
+nomeUsuario.innerHTML = user.nome;
+emailUsuario.innerHTML = user.email
+celUsuario.innerHTML = user.celular
+
+if(user.tipo == 1){
+
+  tipoUsuario.innerHTML = 'Comum';
+
+}else if(user.tipo == 2){
+
+  tipoUsuario.innerHTML = 'Médico';
 
 }
-
-document.getElementById('botao_cadastro_video').innerHTML = botaoCadastroVideo;
-document.getElementById('botao_cadastro_noticia').innerHTML = botaoCadastroNoticia;
