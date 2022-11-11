@@ -1,0 +1,32 @@
+#main-perfil{
+
+    height: 78vh;
+
+}
+
+#titulo-perfil{
+    margin-bottom: 2em;
+}
+
+.item-perfil{
+
+    margin-bottom: 2em;
+
+}
+
+#main-perfil button{
+
+    width: 10em;
+    margin-top: 2em;
+}
+
+#adm{
+    margin-top: 2em;
+}
+
+#adm a{
+    text-decoration: none;
+    color: #eb7062;
+    font-weight: bold;
+    margin-top: 1em;
+}

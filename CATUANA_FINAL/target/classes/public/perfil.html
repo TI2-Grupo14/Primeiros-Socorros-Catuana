@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Catuana - Conteúdo</title>
+  <link rel="shortcut icon" href="img/logo.ico" type="image/x-icon">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="main.css">
+
+  <script src="script-informacoes.js" defer></script>
+  <script src="script-login.js" defer></script>
+  <script src="script-perfil.js" defer></script>
+
+</head>
+
+<body>
+
+  <header class="container header">
+    <div class="row">
+      <div class="col-12 header_area">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-2">
+            <img title="logo_imagem" src="img/logo.png" class="logo">
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-8 col-lg-10 menu_area">
+            <nav class="nav nav-pills flex-column flex-sm-row">
+              <a class="flex-sm-fill text-sm-center nav-link" href="https://creator.voiceflow.com/prototype/636db7346ca8dfcaff60717a">FAQ</a>
+              <a class="flex-sm-fill text-sm-center nav-link" href="index.html">Home</a>
+              <a class="flex-sm-fill text-sm-center nav-link" href="conteudo.html">Conteúdo</a>
+              <a id="logar" class="flex-sm-fill text-sm-center nav-link" href="login.html">Logout</a>
+
+              <div id="botao_logout"> </div>
+
+            </nav>
+          </div>
+
+        </div>
+
+      </div>
+  </header>
+
+  <main class="container" id="main-perfil">
+
+    <h1 class="row" id="titulo-perfil">Informações Pessoais</h1>
+
+    <div class="row">
+
+      <div class="col-6 item-perfil">
+        <label for="name">Nome:</label><br>
+        <span id="name"></span>
+      </div>
+
+      <div class="col-6" item-perfil>
+        <label for="email">E-mail:</label><br>
+        <span id="email"></span>
+      </div>
+
+      <div class="col-6" item-perfil>
+        <label for="tipo">Tipo:</label><br>
+        <span id="tipo"></span>
+      </div>
+
+      <div class="col-6" item-perfil>
+        <label for="cel">Celular:</label><br>
+        <span id="cel"></span>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn btn-sm btn-outline-secondary">Alterar Informações</button>
+    </div>
+
+    <div class="row" id="adm">
+      <a href="listaUsuario.html">Lista de usuários</a>
+      <a href="informacoes.html">Informações</a>
+
+    </div>
+
+
+  </main>
+
+  <footer id="footer">
+
+    <p>Portal Primeiros Socorros - Todos os direitos reservados - 2022</p>
+
+  </footer>
+
+</body>
+
+</html>
