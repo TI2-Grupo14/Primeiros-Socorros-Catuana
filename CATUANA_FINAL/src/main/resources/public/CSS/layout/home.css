@@ -1,0 +1,91 @@
+/* MAIN */
+.gif_main{
+    padding: 20px;
+}
+
+/* CARDS - CARROUSEL */
+
+.btn-primary{
+    background-color: #efaf6a;
+    border-color: #efaf6a;
+}
+
+.btn-primary:hover {
+    background-color: #eb7062;
+    border-color: #eb7062;
+}
+
+.btn-primary:focus{
+    background-color: #eb7062;
+    border-color: #eb7062;
+}
+
+/* NOTICIAS */
+.noticias{
+    margin: 50px;
+    margin-top: 15px;
+}
+.noticias h1{
+    text-align: center;
+    padding: 10px;
+}
+
+/* RECENTES - CARROUSEL */
+
+.carousel-videos{
+    margin-bottom: 25px;
+}
+
+.top-content .carousel-caption {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+}
+
+.top-content .carousel-indicators {
+    bottom: -40px;
+}
+
+@media screen and (max-width:700px){
+    .gif_main {
+        display: none;
+    }
+    .escrito_main{
+        width: 97%;
+    }
+    #img_engasgo {
+        display: none;
+    }
+    
+    #img_queimadura{
+        display: none;
+    }
+
+    .noticias{
+        margin: 10px;
+    }
+    #btn-plano{
+        display: block;
+        text-align: center;
+    }
+    
+}
+
+@media (max-width: 767px) {
+ 
+    /* ... */
+ 
+    .top-content .carousel-control-prev, 
+    .top-content .carousel-control-next {
+        display: none;
+    }
+ 
+    .top-content .carousel-indicators li {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+ 
+    /* ... */
+ 
+}

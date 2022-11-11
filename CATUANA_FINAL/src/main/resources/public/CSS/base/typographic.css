@@ -1,0 +1,27 @@
+
+h1 {
+    font-size: 2.6rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    font-size: 1.8rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h3 {
+    font-size: 0.9rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+p {
+    font-size: 1rem;
+    letter-spacing: 0.02rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a, label {
+    font-family: Arial, Helvetica, sans-serif;
+}
+

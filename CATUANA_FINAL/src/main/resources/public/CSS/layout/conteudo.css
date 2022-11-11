@@ -1,0 +1,74 @@
+/* MAIN */
+#retorno{
+    margin-left: 10%;
+    background-color: #363e43;
+    color: #eb7062;
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: none;
+}
+
+#retorno:hover{
+    cursor: pointer;
+    background-color: #eb7062;
+    color: #363e43;
+}
+
+h1{
+    color: #f1c41f;
+}
+
+.btn-outline-secondary{
+    background-color: #363e43;
+    border-color: #363636;
+    color: #eb7062;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #eb7062;
+    color: #363e43;
+    border-color: #eb7062;
+
+}
+
+#cadastro_info {
+    margin-left: 60px;
+}
+
+.btn-primary{
+    color: white;
+    background-color: #eb7062;
+    border-color: #eb7062;
+    margin-top: 25px !important;
+    margin-left: 0 !important;
+}
+
+.btn-primary:hover{
+    background-color: #e95e4e;
+    border-color: #e95e4e;
+    margin-top: 25px !important;
+    margin-left: 0 !important;
+}
+
+/* FOOTER */
+#footer{
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    width: 100%;
+}
+
+@media screen and (max-width:700px){
+    .card-body{
+        min-width: 300px;
+    }
+    .header{
+        margin-bottom: 10px;
+    }
+
+    .row{
+        display: flex;
+        flex-direction: column;
+    }
+}
